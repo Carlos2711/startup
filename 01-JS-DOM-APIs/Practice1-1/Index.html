@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <title>JavaScript</title>
+ <link href="CSS/style.css" rel="stylesheet">
+ <script type="text/javascript">
+    // function joke(){
+    //   var text = document.createTextNode()
+    // }
+
+    function load () {
+      console.log('load');
+      document.getElementById("changeclass").style.transition = "all 3s ease-in-out";
+      document.getElementById("changeclass").style.opacity = 1;
+    }
+
+    function addTextNode(text) {
+     var newtext = document.createTextNode(text),
+     changeclass = document.getElementById("changeclass");
+     changeclass.Text
+    }
+ </script>
+
+ </head>
+<body onload="load()">
+ <header>
+   <p>JavaScript</p>
+ </header>
+
+ <div class="container">
+  <section id="changeclass" class="hidden">
+    Hello World!
+  </section>
+ </div>
+
+ <footer class="footer">
+ <button class="button" onclick="addTextNode('Joke')">Joke</button>
+ </footer>
+</body>
