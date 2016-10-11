@@ -4,24 +4,7 @@
  <meta charset="utf-8">
  <title>JavaScript</title>
  <link href="CSS/style.css" rel="stylesheet">
- <script type="text/javascript">
-    // function joke(){
-    //   var text = document.createTextNode()
-    // }
-
-    function load () {
-      console.log('load');
-      document.getElementById("changeclass").style.transition = "all 3s ease-in-out";
-      document.getElementById("changeclass").style.opacity = 1;
-    }
-
-    function addTextNode(text) {
-     var newtext = document.createTextNode(text),
-     changeclass = document.getElementById("changeclass");
-     changeclass.Text
-    }
- </script>
-
+ <script type="text/javascript" src="Script/script.js"></script>
  </head>
 <body onload="load()">
  <header>
@@ -35,6 +18,6 @@
  </div>
 
  <footer class="footer">
- <button class="button" onclick="addTextNode('Joke')">Joke</button>
+ <button class="button" onclick="joke()">Joke</button>
  </footer>
 </body>
