@@ -16,10 +16,25 @@ p {
   text-align:center;
 }
 
-.button{
+.button {
   width: 15%;
   height: 14%;
   font-size: 20px;
   border-radius: 0.2em;
   background-color: #20B2AA;
+}
+
+li {
+  font-size: 15px;
+  text-align: right;
+}
+
+.label {
+  width: 30%;
+  height: 10%;
+  font-size: 20px;
+}
+
+label {
+  font-size: 20px;
 }

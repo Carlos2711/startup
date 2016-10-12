@@ -1,7 +1,8 @@
 function load () {
   console.log('load'); //Only to know the page is loaded
-  document.getElementById("changeclass").style.transition = "all 3s ease-in-out";
-  document.getElementById("changeclass").style.opacity = 1;
+  let change = document.getElementById("changeclass");
+  change.style.transition = "all 3s ease-in-out";
+  change.style.opacity = 1;
 }
 
 
@@ -13,31 +14,30 @@ function configAjax (methodHttp, url, asyncronic){
 
 function request(configAjax) {
   return new Promise(function (resolve, reject) {
-  let req = new XMLHttpRequest();
-  req.open(configAjax.methodHttp, configAjax.url, configAjax.asyncronic);
-  req.onload = function() {
-  if (req.status == 200) {
-   resolve(req.response);
-  }
-  else {
-   reject(Error(req.statusText));
-  }
- };
- req.onerror = function() {
- reject(Error("Network Error"));
-  };
-   req.send(null);
+    let req = new XMLHttpRequest();
+    req.open(configAjax.methodHttp, configAjax.url, configAjax.asyncronic);
+    req.onload = function() {
+     if (req.status == 200) {
+      resolve(req.response);
+     }
+     else {
+      reject(Error(req.statusText));
+     }
+    };
+    req.onerror = function() {
+      reject(Error('Network Error'));
+    };
+    req.send();
   });
 }
 
 function joke(){
    let configJokes = new configAjax("GET", "http://api.icndb.com/jokes/random", true);
    request(configJokes).then(function(response) {
-     document.getElementById("changeclass").innerHTML = response.slice(
-      response.search("joke") + 7,
-      response.search("categories") - 3);
+     resp = JSON.parse(response);
+     document.getElementById("changeclass").innerHTML = resp.value.joke;
      }, function(error) {
      document.getElementById("changeclass").innerHTML = "404 not found"
-     document.getElementById("changeclass").innerHTML.fontcolor("red");
+     document.getElementById("changeclass").style.color = "red";
      });
  }
