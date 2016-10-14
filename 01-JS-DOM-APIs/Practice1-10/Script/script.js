@@ -35,11 +35,12 @@ function connect(inpText){
     let objconfig = new configAjax("GET", "https://api.github.com/search/repositories?q="+inpText, true);
     request(objconfig).then(function(response) {
       resp = JSON.parse(response);
-      var columnNode = document.createElement("li");
-      var textNode = document.createTextNode();
+      var columnNode;
+      var textNode;
       var listElement =document.getElementById("list");
       for (var key = 0; key < resp.items.length; key++){
-        textNode = String.parse(resp.items[key].full_name);
+        columnNode = document.createElement("li");
+        textNode = document.createTextNode(resp.items[key].full_name);
         columnNode.appendChild(textNode);
         listElement.appendChild(columnNode);
         }
