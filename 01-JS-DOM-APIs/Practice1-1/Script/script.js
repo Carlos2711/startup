@@ -7,27 +7,30 @@ function load () {
 
 
 function configAjax (methodHttp, url, asyncronic){
-  this.methodHttp = methodHttp;
-  this.url = url;
-  this.asyncronic = asyncronic;
+  var ajaxConfig = {};
+  ajaxConfig.methodHttp = methodHttp;
+  ajaxConfig.url = url;
+  ajaxConfig.asyncronic = asyncronic;
+
+  return ajaxConfig;
 }
 
 function request(configAjax) {
   return new Promise(function (resolve, reject) {
-    let req = new XMLHttpRequest();
-    req.open(configAjax.methodHttp, configAjax.url, configAjax.asyncronic);
-    req.onload = function() {
-     if (req.status == 200) {
-      resolve(req.response);
+    let request = new XMLHttpRequest();
+    request.open(configAjax.methodHttp, configAjax.url, configAjax.asyncronic);
+    request.onload = function() {
+     if (request.status === 200) {
+      resolve(request.response);
      }
      else {
-      reject(Error(req.statusText));
+      reject(Error(request.statusText));
      }
     };
-    req.onerror = function() {
+    request.onerror = function() {
       reject(Error('Network Error'));
     };
-    req.send();
+    request.send();
   });
 }
 

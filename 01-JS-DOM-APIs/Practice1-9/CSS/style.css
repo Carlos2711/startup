@@ -6,25 +6,25 @@
   text-align: center;
 }
 
+li {
+  font-size: 15px;
+  text-align: right;
+}
+
 p {
   background-color: #505050 ;
   border-radius: 0.3em;
 }
 
-.hidden {
-  opacity: 0;
-  text-align:center;
-}
-
 .button {
-  width: 15%;
+  background-color: #20B2AA;
+  border-radius: 0.2em;
   height: 14%;
   font-size: 20px;
-  border-radius: 0.2em;
-  background-color: #20B2AA;
+  width: 15%;  
 }
 
-li {
-  font-size: 15px;
-  text-align: right;
+.hidden {
+  text-align:center;
+  opacity: 0;
 }

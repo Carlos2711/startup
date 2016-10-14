@@ -6,9 +6,10 @@ function load () {
 }
 
 function configAjax (methodHttp, url, asyncronic){
-  this.methodHttp = methodHttp;
-  this.url = url;
-  this.asyncronic = asyncronic;
+  let ajaxConfig = {};
+  ajaxConfig.methodHttp = methodHttp;
+  ajaxConfig.url = url;
+  ajaxConfig.asyncronic = asyncronic;
 }
 
 function request(objconfig) {
@@ -16,7 +17,7 @@ function request(objconfig) {
     let req = new XMLHttpRequest();
     req.open(objconfig.methodHttp, objconfig.url);
     req.onload = function() {
-     if (req.status == 200) {
+     if (req.status === 200) {
       resolve(req.response);
      }
      else {

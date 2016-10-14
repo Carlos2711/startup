@@ -6,22 +6,8 @@
   text-align: center;
 }
 
-p {
-  background-color: #505050 ;
-  border-radius: 0.3em;
-}
-
-.hidden {
-  opacity: 0;
-  text-align:center;
-}
-
-.button {
-  width: 15%;
-  height: 14%;
+label {
   font-size: 20px;
-  border-radius: 0.2em;
-  background-color: #20B2AA;
 }
 
 li {
@@ -29,12 +15,26 @@ li {
   text-align: right;
 }
 
-.label {
-  width: 30%;
-  height: 10%;
-  font-size: 20px;
+p {
+  background-color: #505050 ;
+  border-radius: 0.3em;
 }
 
-label {
+.button {
+  background-color: #20B2AA;
+  border-radius: 0.2em;
+  height: 14%;
   font-size: 20px;
+  width: 15%;
+}
+
+.hidden {
+  opacity: 0;
+  text-align:center;
+}
+
+.label {
+  height: 10%;
+  font-size: 20px;
+  width: 30%;
 }
