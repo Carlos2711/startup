@@ -1,33 +1,89 @@
 class Movie{
 
-  let tittle;
-  let year;
-  let duration;
+  constructor (ntitle, nyear, nduration) {
 
-  Movie(title: ntitle, year: nyear, duration: nduration){
-    Movie.tittle = ntitle;
-    Movie.year = nyear ;
-    Movie.duration = nduration ;
-    getTitle(){
-      return Movie.tittle;
-    }
-    getYear(){
-      return Movie.year;
-    }
-    getDuration(){
-      return Movie.duration;
-    }
+    this.tittle = ntitle;
+    this.year = nyear ;
+    this.duration = nduration ;
   }
 
-  function play(){
+  setTitle (value) {
+    this.tittle = value;
+  }
+
+  getTitle () {
+    return this.tittle;
+  }
+
+  setYear (value) {
+    this.year = value;
+  }
+
+  getYear () {
+    return this.year;
+  }
+
+  setDuration (value) {
+    this.duration = value;
+  }
+
+  getDuration () {
+    return this.duration;
+  }
+
+  play(){
      //undefined now
   }
 
-  function pause(){
+  pause(){
       //undefined now
   }
 
-  function resume(){
+  resume(){
       //undefined now
   }
+}
+
+let terminator = new Movie ('Terminator', 1990, 120);
+console.log(terminator.tittle);
+console.log(terminator.year);
+
+class EventEmitter {
+
+  EventEmitter () {
+    this.observables = {};
+  }
+
+  on (event, listener) {
+    //pass a callback or listener that will be executed each time a given event is triggered
+    //create an object for the event and the callback to insert in observables
+    if(this.observables.find(event)){
+      Console.log('This event already registered.');
+    }
+    else{
+      let observable = new observable ( event, listener);
+      this.observables.push(observable);
+    }
+
+    this.observables[event] = listener;
+  }
+
+  emit () {
+    //allow a class to trigger events to be consumed by other functions/objects.
+    //validate
+
+
+  }
+
+  off (event) {
+    //delete the listener
+    //delete from the observables
+
+    console.log(1, this.observables[event])
+
+    if (this.observables[event]) {
+      delete this.observables[event];
+    }
+
+      }
 }
