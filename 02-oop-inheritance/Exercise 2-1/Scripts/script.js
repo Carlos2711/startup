@@ -56,34 +56,20 @@ class EventEmitter {
 
   on (event, listener) {
     //pass a callback or listener that will be executed each time a given event is triggered
-    //create an object for the event and the callback to insert in observables
-    if(this.observables.find(event)){
-      Console.log('This event already registered.');
-    }
-    else{
-      let observable = new observable ( event, listener);
-      this.observables.push(observable);
-    }
-
     this.observables[event] = listener;
   }
 
   emit () {
     //allow a class to trigger events to be consumed by other functions/objects.
     //validate
-
-
+  
   }
 
   off (event) {
-    //delete the listener
     //delete from the observables
-
-    console.log(1, this.observables[event])
-
+    //console.log(1, this.observables[event])
     if (this.observables[event]) {
       delete this.observables[event];
     }
-
-      }
+  }
 }
