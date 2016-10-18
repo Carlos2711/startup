@@ -1,3 +1,5 @@
+
+
 class Movie{
 
   constructor (ntitle, nyear, nduration) {
@@ -50,7 +52,7 @@ console.log(terminator.year);
 
 class EventEmitter {
 
-  EventEmitter () {
+  constructor() {
     this.observables = {};
   }
 
@@ -59,17 +61,31 @@ class EventEmitter {
     this.observables[event] = listener;
   }
 
-  emit () {
+  emit (event) {
     //allow a class to trigger events to be consumed by other functions/objects.
-    //validate
-  
+    this.observables[event]();
   }
 
   off (event) {
     //delete from the observables
-    //console.log(1, this.observables[event])
+    // console.log(1, this.observables[event])
+
     if (this.observables[event]) {
       delete this.observables[event];
     }
+
   }
 }
+
+//testing
+// function hello() {
+//  alert("Hello");
+// }
+//
+// let eventEmitter = new EventEmitter();
+// eventEmitter.on("exampleEvent", hello);
+//
+// setTimeout(function() {
+//  eventEmitter.emit("exampleEvent");
+//  eventEmitter.off("exampleEvent");
+// }, 3000);
