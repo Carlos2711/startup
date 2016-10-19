@@ -46,6 +46,7 @@ class Movie extends EventEmitter {
     this.tittle = ntitle;
     this.year = nyear ;
     this.duration = nduration ;
+    this.cast = [];
   }
 
   setTitle (value) {
@@ -84,8 +85,8 @@ class Movie extends EventEmitter {
     super.emit('resume');
   }
 
-  addCast(){
-    //create an array of Actors, and insert one or more actors whit the same method
+  addCast(actors) {
+    this.cast = this.cast.concat(actors);
   }
 }
 //testing Movie
@@ -142,8 +143,20 @@ class Actor {
   }
 
 }
-
-let actor1 = new Actor('Sam Neill', 30);
+//Testing class Actor
+/*let actor1 = new Actor('Sam Neill', 30);
 let actor2 = new Actor('Laura Dern', 26);
 let actor3 = new Actor('Richard Attenborough', 60);
 let actor4 = new Actor('Jeff Goldblum', 27);
+*/
+
+//testing method addCast
+let sam = new Actor('Sam Neill', 30);
+let otherCast = [
+ new Actor('Laura Dern', 26),
+ new Actor('Richard Attenborough', 60)
+ new Actor('Jeff Goldblum', 27)
+];
+
+jurassic.addCast(sam);
+jurassic.addCast(otherCast);
