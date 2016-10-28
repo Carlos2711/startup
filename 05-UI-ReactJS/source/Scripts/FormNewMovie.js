@@ -7,7 +7,7 @@ class FormNewMovie extends React.Component {
     this.handleChangetittle = this.handleChangetittle.bind(this);
     this.handleChangeyear = this.handleChangeyear.bind(this);
     this.handleChangeduration = this.handleChangeduration.bind(this);
-    //this.handleSubmit = this.handleSubmit.bind(this)
+    this.saveMovie = this.saveMovie.bind(this);
     this.state = {tittle: '' , year: '' , duration: '' };
   }
 
@@ -35,7 +35,7 @@ class FormNewMovie extends React.Component {
          <input onChange={this.handleChangeduration} value={this.state.duration}/>
         </label>
        </div>
-       <button type="button" id="save" onclick="save ()"> Save </button>
+       <button type="button" id="save" onClick={this.saveMovie}> Save </button>
        <button type="button" id="cancel" > Cancel </button>
       </div>
     );
@@ -53,23 +53,12 @@ class FormNewMovie extends React.Component {
   handleChangeduration(e) {
     this.setState({duration: e.target.value});
   }
-/*
-  handleSubmit(e) {
-   e.preventDefault();
-   var newItem = {
-     text: this.state.text,
-     id: Date.now()
-   };
-   this.setState((prevState) => ({
-     items: prevState.items.concat(newItem),
-     text: ''
-   }));
- }
-*/
-  saveMovie(){
+
+  saveMovie(e) {
+    e.preventDefault();
     let newmovie = new Movie(this.state.tittle, this.state.year, this.state.duration);
-    console.log("newmovie.tittle");
-    //localStorage.setItem("Movie", newmovie);
+    console.log(newmovie);
+    localStorage.setItem("Movie", JSON.stringify(newmovie));
   }
 
 }

@@ -8,9 +8,9 @@ class Movie extends React.Component {
       test: 'test'
     };
 
-    this.tittle = '';
-    this.year = '' ;
-    this.duration = '' ;
+    this.tittle = title;
+    this.year = year ;
+    this.duration = duration ;
   }
 
   render() {
