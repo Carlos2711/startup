@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Movie} from './Scripts/Movie.js'
+import {FormNewMovie} from './Scripts/FormNewMovie.js'
 
 class Container extends React.Component {
   constructor(props){
@@ -10,7 +10,7 @@ class Container extends React.Component {
   render() {
     return(
         <div>
-          <Movie />
+          <FormNewMovie />
         </div>
       );
   }
