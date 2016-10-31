@@ -8,7 +8,7 @@ class FormNewMovie extends React.Component {
     this.handleChangeyear = this.handleChangeyear.bind(this);
     this.handleChangeduration = this.handleChangeduration.bind(this);
     this.saveMovie = this.saveMovie.bind(this);
-    this.state = {tittle: '' , year: '' , duration: '' };
+    this.state = {tittle: '' , year: '' , duration: '' , id: '' , movies: [] };
   }
 
   render () {
@@ -56,9 +56,14 @@ class FormNewMovie extends React.Component {
 
   saveMovie(e) {
     e.preventDefault();
+    let movie = JSON.parse(localStorage.getItem('Movie')) || [];
     let newmovie = new Movie(this.state.tittle, this.state.year, this.state.duration);
-    console.log(newmovie);
-    localStorage.setItem("Movie", JSON.stringify(newmovie));
+    this.setState({ id: Date.now() }, () => { newmovie = this.state.id });
+    movie.push(newmovie);
+    this.setState({ movies: movie}, () => {
+      localStorage.setItem("Movie", JSON.stringify(this.state.movies));
+    });
+
   }
 
 }
