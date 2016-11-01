@@ -12,15 +12,17 @@ class ListMovie extends React.Component {
     return (
       <ul>
         {this.props.items.map(item => (
-          <li key={item.id}>{item.state.tittle}+{item.state.year}+{item.state.duration}+{item.id} <button onClick={this.updateMovie}> Update </button> <button onClick={() => { return this.deleteMovie(item); } }> Delete </button>  </li>
+          <li key={item.id}>{item.state.tittle}+{item.state.year}+{item.state.duration}+{item.id} <button onClick={() => { return this.updateMovie(item); } }> Update </button> <button onClick={() => { return this.deleteMovie(item); } }> Delete </button>  </li>
           ))}
       </ul>
 
     );
   }
 
-  updateMovie(){
-
+  updateMovie(item){
+    console.log(item);
+    //the item is OK
+    //send the item finded onto FormNewMovie to update info
   }
   deleteMovie(item){
     let movies = this.props.items;
