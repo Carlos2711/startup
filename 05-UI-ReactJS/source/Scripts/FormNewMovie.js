@@ -58,12 +58,12 @@ class FormNewMovie extends React.Component {
     e.preventDefault();
     let movie = JSON.parse(localStorage.getItem('Movie')) || [];
     let newmovie = new Movie(this.state.tittle, this.state.year, this.state.duration);
-    this.setState({ id: Date.now() }, () => { newmovie = this.state.id });
+    this.setState({ id: Date.now() }, () => { newmovie["id"] = this.state.id });
     movie.push(newmovie);
     this.setState({ movies: movie}, () => {
       localStorage.setItem("Movie", JSON.stringify(this.state.movies));
     });
-
+    this.props.onSave(movie);
   }
 
 }
