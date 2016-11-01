@@ -14,13 +14,14 @@ class Container extends React.Component {
     return(
         <div>
           <FormNewMovie items = {this.state.movies} onSave = {this.returnMovie}/>
-          <ListMovie items = {this.state.movies}/>
+          <ListMovie items = {this.state.movies} onUpdate = {this.returnMovie}/>
         </div>
       );
   }
 
   returnMovie(movie){
     this.setState({movies: movie});
+
   }
 }
 
