@@ -20,9 +20,7 @@ class ListMovie extends React.Component {
   }
 
   updateMovie(item){
-    console.log(item);
-    //the item is OK
-    //send the item finded onto FormNewMovie to update info
+    this.props.onReturn(item);
   }
   deleteMovie(item){
     let movies = this.props.items;

@@ -8,6 +8,7 @@ class FormNewMovie extends React.Component {
     this.handleChangeyear = this.handleChangeyear.bind(this);
     this.handleChangeduration = this.handleChangeduration.bind(this);
     this.saveMovie = this.saveMovie.bind(this);
+    this.getElement = this.getElement.bind(this);
     this.state = {tittle: '' , year: '' , duration: '' , id: '' , movies: [] };
   }
 
@@ -41,6 +42,18 @@ class FormNewMovie extends React.Component {
     );
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log("Form" + nextProps.movie.id);
+    this.setState({
+      tittle: nextProps.movie.state.tittle,
+      year: nextProps.movie.state.year,
+      duration: nextProps.movie.state.duration,
+      id: nextProps.movie.id
+    });
+
+  }
+
+
   handleChangetittle(e) {
     this.setState({tittle: e.target.value});
   }
@@ -56,14 +69,31 @@ class FormNewMovie extends React.Component {
 
   saveMovie(e) {
     e.preventDefault();
-    let movie = JSON.parse(localStorage.getItem('Movie')) || [];
-    let newmovie = new Movie(this.state.tittle, this.state.year, this.state.duration);
-    this.setState({ id: Date.now() }, () => { newmovie["id"] = this.state.id });
-    movie.push(newmovie);
-    this.setState({ movies: movie}, () => {
-      localStorage.setItem("Movie", JSON.stringify(this.state.movies));
-    });
-    this.props.onSave(movie);
+    let movie = this.props.items;
+    if (this.state.id === ''){
+      let newmovie = new Movie(this.state.tittle, this.state.year, this.state.duration);
+      this.setState({ id: Date.now() }, () => { newmovie["id"] = this.state.id });
+      movie.push(newmovie);
+      this.setState({ movies: movie}, () => {
+        localStorage.setItem("Movie", JSON.stringify(this.state.movies));
+      });
+      this.props.onSave(movie);
+    }
+    else{
+      console.log(typeof movie, movie);
+      let changemovie = movie.find(this.getElement);
+      changemovie.state.tittle = this.state.tittle;
+      changemovie.state.year = this.state.year;
+      changemovie.state.duration = this.state.duration;
+      this.setState({ movies: movie}, () => {
+        localStorage.setItem("Movie", JSON.stringify(this.state.movies));
+      });
+      this.props.onSave(movie);
+    }
+  }
+
+  getElement(element){
+    return element.id === this.state.id;
   }
 
 }

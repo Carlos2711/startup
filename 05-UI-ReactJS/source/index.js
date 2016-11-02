@@ -6,23 +6,29 @@ import {ListMovie} from './Scripts/ListMovie.js';
 class Container extends React.Component {
   constructor(props){
     super(props);
-    this.state = { movies: JSON.parse(localStorage.getItem('Movie')) || [] };
-    this.returnMovie = this.returnMovie.bind(this);
+    this.state = { movies: JSON.parse(localStorage.getItem('Movie')) || [] , movie: '' };
+    this.returnMovies = this.returnMovies.bind(this);
+    this.getMovie = this.getMovie.bind(this);
   }
 
   render() {
     return(
         <div>
-          <FormNewMovie items = {this.state.movies} onSave = {this.returnMovie}/>
-          <ListMovie items = {this.state.movies} onUpdate = {this.returnMovie}/>
+          <FormNewMovie items = {this.state.movies} movie = {this.state.movie} onSave = {this.returnMovies}/>
+          <ListMovie items = {this.state.movies} onUpdate = {this.returnMovies} onReturn= {this.getMovie}/>
         </div>
       );
   }
 
-  returnMovie(movie){
+  returnMovies(movie){
     this.setState({movies: movie});
-
   }
+
+  getMovie(movie){
+    this.setState({movie: movie});
+  }
+
+
 }
 
 ReactDOM.render(<Container />, document.getElementById('app'));
