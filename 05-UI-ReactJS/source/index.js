@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {FormNewMovie} from './Scripts/FormNewMovie.js';
 import {ListMovie} from './Scripts/ListMovie.js';
+import {Router,Route, browserHistory} from 'react-router';
 
 class Container extends React.Component {
   constructor(props){
@@ -32,3 +33,14 @@ class Container extends React.Component {
 }
 
 ReactDOM.render(<Container />, document.getElementById('app'));
+// render((
+//   <Router history={browserHistory}>
+//     <Route path="/" component={App}>
+//       <Route path="about" component={About}/>
+//       <Route path="users" component={Users}>
+//         <Route path="/user/:userId" component={User}/>
+//       </Route>
+//       <Route path="*" component={NoMatch}/>
+//     </Route>
+//   </Router>
+// ), document.getElementById('root'))

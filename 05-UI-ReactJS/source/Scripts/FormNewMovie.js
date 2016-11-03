@@ -2,8 +2,9 @@ import React from 'react';
 import {Movie} from './Movie.js';
 
 class FormNewMovie extends React.Component {
-  constructor(props){
-    super(props);
+
+  constructor(){
+    super();
     this.handleChangetittle = this.handleChangetittle.bind(this);
     this.handleChangeyear = this.handleChangeyear.bind(this);
     this.handleChangeduration = this.handleChangeduration.bind(this);
@@ -21,13 +22,13 @@ class FormNewMovie extends React.Component {
        <div>
         <label>
           Title:
-         <input onChange={this.handleChangetittle} value={this.state.tittle} />
+         <input {...this.getTitleProps()} />
         </label>
        </div>
        <div>
         <label>
           Year:
-         <input onChange={this.handleChangeyear} value={this.state.year}/>
+         <input {...this.getYearInputProps()}/>
         </label>
        </div>
        <div>
@@ -43,7 +44,6 @@ class FormNewMovie extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("Form" + nextProps.movie.id);
     this.setState({
       tittle: nextProps.movie.state.tittle,
       year: nextProps.movie.state.year,
@@ -51,6 +51,20 @@ class FormNewMovie extends React.Component {
       id: nextProps.movie.id
     });
 
+  }
+
+  getYearInputProps () {
+    return {
+      onChange: this.handleChangeyear,
+      value: this.state.year
+    }
+  }
+
+  getTitleProps () {
+    return {
+      onChange: this.handleChangetittle,
+      value: this.state.title
+    };
   }
 
 
