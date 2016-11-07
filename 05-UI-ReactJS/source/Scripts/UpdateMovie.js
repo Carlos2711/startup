@@ -1,7 +1,7 @@
 import React from 'react';
 import {Movie} from './Movie.js';
 
-class FormNewMovie extends React.Component {
+class UpdateMovie extends React.Component {
 
   constructor(){
     super();
@@ -43,6 +43,16 @@ class FormNewMovie extends React.Component {
     );
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      tittle: nextProps.movie.state.tittle,
+      year: nextProps.movie.state.year,
+      duration: nextProps.movie.state.duration,
+      id: nextProps.movie.id
+    });
+
+  }
+
   getYearInputProps () {
     return {
       onChange: this.handleChangeyear,
@@ -74,9 +84,10 @@ class FormNewMovie extends React.Component {
   saveMovie(e) {
     e.preventDefault();
     let movie = this.props.items;
-    let newmovie = new Movie(this.state.tittle, this.state.year, this.state.duration);
-    this.setState({ id: Date.now() }, () => { newmovie["id"] = this.state.id });
-    movie.push(newmovie);
+    let changemovie = movie.find(this.getElement);
+    changemovie.state.tittle = this.state.tittle;
+    changemovie.state.year = this.state.year;
+    changemovie.state.duration = this.state.duration;
     this.setState({ movies: movie}, () => {
       localStorage.setItem("Movie", JSON.stringify(this.state.movies));
     });
@@ -89,4 +100,4 @@ class FormNewMovie extends React.Component {
 
 }
 
-export {FormNewMovie}
+export {UpdateMovie}

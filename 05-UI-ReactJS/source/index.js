@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {FormNewMovie} from './Scripts/FormNewMovie.js';
 import {ListMovie} from './Scripts/ListMovie.js';
+import {UpdateMovie} from './Scripts/UpdateMovie.js';
 import {Router,Route,Link, browserHistory} from 'react-router';
+
 
 class Container extends React.Component {
   constructor(props){
@@ -16,7 +18,7 @@ class Container extends React.Component {
     return(
         <div>
           <ListMovie items = {this.state.movies} onUpdate = {this.returnMovies} onReturn= {this.getMovie}/>
-          <Link to = '/newmovie'> newmovie </Link>
+          <Link to = 'newmovie'> newmovie </Link>
         </div>
       );
   }
@@ -35,11 +37,15 @@ class Container extends React.Component {
 ReactDOM.render((
   <Router history={browserHistory}>
     <Route path='/' component={Container}>
-      <Route path='newmovie' component={FormNewMovie}>
-      </Route>
+
     </Route>
+    <Route path='newmovie' component={FormNewMovie} />
   </Router>
 ), document.getElementById('app'));
 
 
-//   <FormNewMovie items = {this.state.movies} movie = {this.state.movie} onSave = {this.returnMovies}/>
+/*   Remember change button for link in the ListMovie to execute the update
+
+
+
+*/
