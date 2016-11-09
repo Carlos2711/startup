@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {FormNewMovie} from './Scripts/FormNewMovie.js';
-import {ListMovie} from './Scripts/ListMovie.js';
-import {UpdateMovie} from './Scripts/UpdateMovie.js';
+import ListMovie from './Scripts/ListMovie.js';
 import {Router,Route,Link, browserHistory} from 'react-router';
+import {Store} from './Scripts/Store.js';
+import {Provider, connect} from 'react-redux';
 
 
 class Container extends React.Component {
   constructor(props){
     super(props);
-    this.state = { movies: JSON.parse(localStorage.getItem('Movie')) || [] , movie: '' };
+
     this.returnMovies = this.returnMovies.bind(this);
     this.getMovie = this.getMovie.bind(this);
   }
@@ -17,8 +18,10 @@ class Container extends React.Component {
   render() {
     return(
         <div>
-          <ListMovie items = {this.state.movies} onUpdate = {this.returnMovies} onReturn= {this.getMovie}/>
-          <Link to = 'newmovie'> newmovie </Link>
+          <Link to='/newmovie'>newmovie</Link>
+          <Link to='/list'>List</Link>
+
+          {this.props.children}
         </div>
       );
   }
@@ -30,22 +33,16 @@ class Container extends React.Component {
   getMovie(movie){
     this.setState({movie: movie});
   }
-
-
 }
 
 ReactDOM.render((
-  <Router history={browserHistory}>
-    <Route path='/' component={Container}>
-
-    </Route>
-    <Route path='newmovie' component={FormNewMovie} />
-  </Router>
+  <Provider store={Store}>
+    <Router history={browserHistory}>
+      <Route path='/' component={Container}>
+        <Route path='newmovie' component={FormNewMovie} />
+          <Route path='/newmovie/:movieId' component={FormNewMovie} />
+        <Route path='list' component={ListMovie} />
+      </Route>
+    </Router>
+  </Provider>
 ), document.getElementById('app'));
-
-
-/*   Remember change button for link in the ListMovie to execute the update
-
-
-
-*/

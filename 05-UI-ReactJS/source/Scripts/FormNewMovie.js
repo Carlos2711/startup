@@ -1,5 +1,8 @@
 import React from 'react';
 import {Movie} from './Movie.js';
+import {Store} from './Store';
+
+
 
 class FormNewMovie extends React.Component {
 
@@ -43,6 +46,22 @@ class FormNewMovie extends React.Component {
     );
   }
 
+  componentDidMount() {
+    if(this.props.params.movieId) {
+      let movie = this.props.items.find((movie) => {
+        if(this.props.params.movieId === movie.id.toString()) {
+          return movie.tittle, movie.year, movie.duration, movie.id ;
+        }
+      });
+      this.setState({
+          tittle: movie.tittle,
+          year:  movie.year,
+          duration: movie.duration,
+          id: movie.id
+        });
+    }
+  }
+
   getYearInputProps () {
     return {
       onChange: this.handleChangeyear,
@@ -72,15 +91,29 @@ class FormNewMovie extends React.Component {
   }
 
   saveMovie(e) {
-    e.preventDefault();
-    let movie = this.props.items;
-    let newmovie = new Movie(this.state.tittle, this.state.year, this.state.duration);
-    this.setState({ id: Date.now() }, () => { newmovie["id"] = this.state.id });
-    movie.push(newmovie);
-    this.setState({ movies: movie}, () => {
-      localStorage.setItem("Movie", JSON.stringify(this.state.movies));
-    });
-    this.props.onSave(movie);
+
+    if(this.state.id === ''){
+     Store.dispatch({
+       type: 'ADD_MOVIE',
+       movie: {
+         tittle: this.state.tittle,
+         year: this.state.year,
+         duration: this.state.duration,
+         id: Date.now(),
+        }
+     });
+    }
+    else {
+      Store.dispatch({
+        type: 'UPDATE_MOVIE',
+        movie: {
+          tittle:this.state.tittle,
+          year: this.state.year,
+          duration: this.state.duration,
+          id: this.state.id,
+        }
+      })
+    }
   }
 
   getElement(element){

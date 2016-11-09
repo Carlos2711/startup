@@ -1,39 +1,40 @@
 import React from 'react';
-import {Movie} from './Movie.js';
+import { Movie } from './Movie.js';
+import { Router, Route, Link, browserHistory } from 'react-router';
+import { connect } from 'react-redux';
+import { FormNewMovie } from './FormNewMovie.js';
+import {Store} from './Store.js';
+
+const updateProps = function (state) {
+  console.log(state)
+  return {
+    items: state
+  };
+}
 
 class ListMovie extends React.Component {
   constructor(props){
     super(props);
-    this.updateMovie = this.updateMovie.bind(this);
     this.deleteMovie = this.deleteMovie.bind(this);
   }
 
   render() {
     return (
       <ul>
-        {this.props.items.map(item => (
-          <li key={item.id}>{item.state.tittle}+{item.state.year}+{item.state.duration}+{item.id} <button onClick={() => { return this.updateMovie(item); } }> Update </button> <button onClick={() => { return this.deleteMovie(item); } }> Delete </button>  </li>
+        {this.props.items.map((item, key) => (
+          <li key={key}>{item.tittle}+{item.year}+{item.duration}  <Link to={`/newmovie/${item.id}`}> Update </Link>  <button onClick={() => { return this.deleteMovie(item.id); } }> Delete </button>  </li>
           ))}
       </ul>
 
     );
   }
 
-  updateMovie(item){
-    this.props.onReturn(item);
+  deleteMovie(id){
+    Store.dispatch({
+      type: 'DELETE_MOVIE',
+      movieId: id,
+    })
   }
-  deleteMovie(item){
-    let movies = this.props.items;
-    let indexDeleteMovie = movies.indexOf(item);
-    this.props.items.splice(indexDeleteMovie,1);
-    localStorage.setItem("Movie", JSON.stringify(this.props.items))
-    this.props.onUpdate(this.props.items);
-
-  }
-
-
 }
 
-
-
-export {ListMovie}
+export default connect(updateProps)(ListMovie);

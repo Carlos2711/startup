@@ -1,30 +1,35 @@
 import { createStore } from 'redux';
-import { Provider } from 'react-redux';
 import {Movie} from './Movie.js';
 
-var moviesReducer = function(state, action) {
-  if (state === undefined || state === 'movies') {
-    state = [];
+let moviesReducer = function (movies = JSON.parse(localStorage.getItem('Movie')) || [], action) {
+
+  switch (action.type) {
+    case 'ADD_MOVIE':
+      let newstate = movies;
+      console.log(action.movie);
+      newstate.push(action.movie);
+      return newstate;
+
+    case 'UPDATE_MOVIE':
+      let updateMovies = movies;
+      let editMovie = updateMovies.find(movie => {
+        return movie.id === action.movie.id;
+      });
+      return Object.assign({}, state, { movies: updateMovies });
+
+    case 'DELETE_MOVIE':
+      const deleteMovies = movies.filter(movie => {
+        if(movie.id != action.movieId) {
+          return movie
+        }
+      });
+      return Object.assign({}, state, { movies: deleteMovies });
+
+    default:
+      return movies;
   }
-  if (state === undefined) {
-    state = '';
-  }
-  if (action.type === 'ADD_MOVIE') {
-    state.push(action.movie);
-  }
-  return state;
 }
 
+let Store = createStore(moviesReducer);
 
-
-// Create a store by passing in the reducer
-let store = Redux.createStore(moviesReducer);
-
-// Dispatch our first action to express an intent to change the state
-store.dispatch({
-  type: 'ADD_MOVIE',
-  movie: {tittle: 'Terminator', year: '1989', duration: '126'}
-});
-
-
-// Left Finish it
+export {Store}

@@ -1,17 +1,11 @@
-import React from 'react';
-
-class Movie extends React.Component {
+class Movie {
 
   constructor (title, year, duration, id) {
-    super();
-    this.state = {tittle: title , year: year , duration: duration , id: id };
-
+    this.tittle = title ;
+    this.year =  year ;
+    this.duration = duration ;
+    this.id = id ;
   }
-
-  render() {
-    return null;
-  }
-
 }
 
 export {Movie}
