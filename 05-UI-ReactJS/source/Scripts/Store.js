@@ -23,7 +23,7 @@ let moviesReducer = function (movies = JSON.parse(localStorage.getItem('Movie'))
           return movie
         }
       });
-      return Object.assign({}, state, { movies: deleteMovies });
+      return deleteMovies;
 
     default:
       return movies;

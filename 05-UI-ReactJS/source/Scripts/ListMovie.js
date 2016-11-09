@@ -22,7 +22,7 @@ class ListMovie extends React.Component {
     return (
       <ul>
         {this.props.items.map((item, key) => (
-          <li key={key}>{item.tittle}+{item.year}+{item.duration}  <Link to={`/newmovie/${item.id}`}> Update </Link>  <button onClick={() => { return this.deleteMovie(item.id); } }> Delete </button>  </li>
+          <li key={key}>{item.tittle}+{item.year}+{item.duration}  <Link to={`newmovie/${item.id}`}> Update </Link>  <button onClick={() => { return this.deleteMovie(item.id); } }> Delete </button>  </li>
           ))}
       </ul>
 
