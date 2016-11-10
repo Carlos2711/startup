@@ -6,7 +6,6 @@ import { FormNewMovie } from './FormNewMovie.js';
 import {Store} from './Store.js';
 
 const updateProps = function (state) {
-  console.log(state)
   return {
     items: state
   };

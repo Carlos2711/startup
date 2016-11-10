@@ -48,7 +48,8 @@ class FormNewMovie extends React.Component {
 
   componentDidMount() {
     if(this.props.params.movieId) {
-      let movie = this.props.items.find((movie) => {
+      this.state.movies = Store.getState();
+      let movie = this.state.movies.find((movie) => {
         if(this.props.params.movieId === movie.id.toString()) {
           return movie.tittle, movie.year, movie.duration, movie.id ;
         }
@@ -72,7 +73,7 @@ class FormNewMovie extends React.Component {
   getTitleProps () {
     return {
       onChange: this.handleChangetittle,
-      value: this.state.title
+      value: this.state.tittle
     };
   }
 

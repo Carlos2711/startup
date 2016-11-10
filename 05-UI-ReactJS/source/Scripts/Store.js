@@ -6,16 +6,21 @@ let moviesReducer = function (movies = JSON.parse(localStorage.getItem('Movie'))
   switch (action.type) {
     case 'ADD_MOVIE':
       let newstate = movies;
-      console.log(action.movie);
       newstate.push(action.movie);
       return newstate;
 
     case 'UPDATE_MOVIE':
       let updateMovies = movies;
       let editMovie = updateMovies.find(movie => {
-        return movie.id === action.movie.id;
+        if (movie.id === action.movie.id){
+            movie.tittle = action.movie.tittle;
+            movie.year = action.movie.year;
+            movie.duration = action.movie.duration;
+            return movie;
+        }
+
       });
-      return Object.assign({}, state, { movies: updateMovies });
+      return updateMovies;
 
     case 'DELETE_MOVIE':
       const deleteMovies = movies.filter(movie => {
