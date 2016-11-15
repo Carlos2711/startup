@@ -2,19 +2,20 @@
 
 let gamesReducer = function ( games =  JSON.parse(localStorage.getItem('Game'))|| [], action) {
 
+  let newstate;
   switch (action.type) {
     case 'ADD_GAME':
-      let newstate = games;
+      newstate = games;
       //logic
       return newstate;
 
     case 'UPDATE_GAME':
-      let newstate = games;
+      newstate = games;
       //logic
       return newstate;
 
     case 'DELETE_GAME':
-      let newstate = games;
+      newstate = games;
       //logic
       return newstate;
 

@@ -4,7 +4,12 @@ import { Router, Route, Link, browserHistory } from 'react-router';
 import { Store } from './Scripts/Store.js';
 import { Home } from './Scripts/Home.js';
 
-let Container = React.createClass({
+class Container extends React.createClass({
+
+    constructor (props) {
+      super(props);
+    }
+
     render: function () {
         return (
             <div className="container">
@@ -14,4 +19,12 @@ let Container = React.createClass({
     }
 });
 
-ReactDOM.render(<Container />, document.getElementById('app'));
+ReactDOM.render((
+  <Provider store = {Store}>
+    <Router history = {browserHistory}>
+      <Route path = '/' component = { Container } >
+        <Route path = 'home' component = {Home} />
+      </Route>
+    </Router>
+  </Provider>
+), document.getElementById('app'));
