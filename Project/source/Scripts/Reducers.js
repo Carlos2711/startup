@@ -1,4 +1,4 @@
-//import {className} from './Scripts/className.js'
+import { Games } from './Games.js'
 
 let gamesReducer = function ( games =  JSON.parse(localStorage.getItem('Game'))|| [], action) {
 
@@ -24,4 +24,4 @@ let gamesReducer = function ( games =  JSON.parse(localStorage.getItem('Game'))|
   }
 }
 
-export { Reducers }
+export { gamesReducer }

@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import { Reducers } from './Reducers.js'
+import { gamesReducers } from './Reducers.js'
 
 let Store = createStore(gamesReducer);
 

@@ -8,7 +8,7 @@ class ListGame extends React.Component {
 
   render (){
     return (
-      //something
+      null
     );
   }
 }
