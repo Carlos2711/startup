@@ -11,7 +11,7 @@ class Search extends React.Component{
     this.searchGames = this.searchGames.bind(this);
     this.state = { search: '', games: [] };
   }
-
+// agregar un mapeo para mostrar los resultados de la busqueda
   render() {
     return(
       <div>
@@ -28,6 +28,7 @@ class Search extends React.Component{
   }
 
   searchGames(search) {
+    //clear this block after the site work nice
     let URL = 'https://videogamesrating.p.mashape.com/get.php?game='+search;
     let searchedgames;
 
