@@ -1,6 +1,6 @@
 import { createStore } from 'redux';
-import { gamesReducers } from './Reducers.js'
+import { GamesReducers } from './GamesReducers.js'
 
-let Store = createStore(gamesReducer);
+let Store = createStore(GamesReducer);
 
-export {Store}
+export { Store }

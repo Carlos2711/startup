@@ -1,4 +1,4 @@
-// create the tab for the data of the game and the user can put a score
+// create the tab for the data of the game and the user can put a score, validate the user can't change the others values
 import react from 'react';
 import { Games } from './Games';
 
@@ -121,11 +121,35 @@ class SaveGame extends React.Component {
 
 
   savenewgame(e) {
-    e.preventDefault();
-    let game = this.props.items;
-    game.personalscore =
-    this.setState = ;
-    // recuperar del localstorage, agregar el nuevo juego y guardarlo en el localstorage
+    e.preventDefault();  //take a look of this preventDefault
+    if(this.state.id === ''){
+      Store.dispatch({
+        type: 'ADD_GAME',
+        game: {
+          title: this.state.title,
+          score: this.state.score,
+          personalscore: this.state.personalscore,
+          publisher: this.state.publisher,
+          plataform: this.state.plataform,
+          thumb: this.state.thumb,
+          id: Date.now(),
+        }
+      });
+    }
+    else {
+      Store.dispatch({
+        type: 'UPDATE_GAME',
+        game: {
+          title: this.state.title,
+          score: this.state.score,
+          personalscore: this.state.personalscore,
+          publisher: publisher,
+          plataform: this.state.plataform,
+          thumb: this.state.thumb,
+          id: this.state.id,
+        }
+      })
+    }
   }
 }
 

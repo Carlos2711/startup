@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { ListGame } from './ListGame.js';
-import { Games } from './Games.js';
+import { Game } from './Game.js';
 
 class Search extends React.Component{
 
@@ -11,8 +11,10 @@ class Search extends React.Component{
     this.searchGames = this.searchGames.bind(this);
     this.state = { search: '', games: [] };
   }
+
 // agregar un mapeo para mostrar los resultados de la busqueda
   render() {
+    //add a message when return a string of null, think is usefull implement an IF or other methods
     return(
       <div>
         <label for="inputText" >
@@ -29,6 +31,7 @@ class Search extends React.Component{
 
   searchGames(search) {
     //clear this block after the site work nice
+
     let URL = 'https://videogamesrating.p.mashape.com/get.php?game='+search;
     let searchedgames;
 
@@ -39,6 +42,9 @@ class Search extends React.Component{
       console.log(searchedgames[0].title);
       this.setState({games: searchedgames});
       console.log(this.state.games);
+      if(searchedgames === []){
+
+      }
     }.bind(this);
 
     xhr.open('GET', URL);

@@ -1,11 +1,13 @@
 import React from 'react';
-import { Games } from './Games';
+import { Game } from './Game.js';
 
 const updateProps = function (state) {
   return {
     items: state
   };
 }
+
+//pasar por props la lista de games
 
 class ListGame extends React.Component {
   constructor (props) {
@@ -14,11 +16,24 @@ class ListGame extends React.Component {
 
   render (){
     return (
+      <p> Your favourite games! </p>
       <ul>
         {this.props.items.map((item, key) => (
-          <li key={key}> {item.title} <Link to={`SaveGame/${item.id}`}> Update </Link>  <button onClick={() => { return this.deleteMovie(item.id); } }> Delete </button>  </li>
-          ))}
-        </ul>
+          <li key={key}> {item.title}
+            <Link to={`SaveGame/${item.id}`}> Update </Link>
+            <button onClick={() => { return this.deleteGame(item.id); } }> Delete </button>
+          </li>
+        ))}
+      </ul>
     );
   }
+
+  deleteGame(id){
+    Store.dispatch({
+      type: 'DELETE_GAME',
+      gameId: id,
+    })
+  }
 }
+
+export { ListGame };

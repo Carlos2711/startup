@@ -1,6 +1,5 @@
 import React from 'react';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import ReactDOM from 'react-dom';
 import {Search} from './Search.js';
 
 class Home extends React.Component {
