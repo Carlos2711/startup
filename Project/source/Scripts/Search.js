@@ -1,7 +1,7 @@
+import { Game } from './Game.js';
+import { Router, Route, Link, browserHistory } from 'react-router';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ListGame } from './ListGame.js';
-import { Game } from './Game.js';
 
 class Search extends React.Component{
 
@@ -9,7 +9,7 @@ class Search extends React.Component{
     super();
     this.handleChangesearch = this.handleChangesearch.bind(this);
     this.searchGames = this.searchGames.bind(this);
-    this.state = { search: '', games: [] };
+    this.state = { search: '', games: [], chosengame: '' };
   }
 
 // agregar un mapeo para mostrar los resultados de la busqueda
@@ -17,10 +17,15 @@ class Search extends React.Component{
     //add a message when return a string of null, think is usefull implement an IF or other methods
     return(
       <div>
-        <label for="inputText" >
+        <label>
           <input onChange={this.handleChangesearch} value={this.state.search}/>
         </label>
         <button onClick={()=>{ return this.searchGames(this.state.search); } }> Search </button>
+        <ul>
+          {this.state.games.map((game, key) => (
+            <li key={key}> {game.title} <Link to={`newgame/${game}`}> Add Game </Link>  </li>
+            ))}
+        </ul>
       </div>
     )
   }

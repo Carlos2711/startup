@@ -1,9 +1,10 @@
 // create the tab for the data of the game and the user can put a score, validate the user can't change the others values
-import react from 'react';
-import { Games } from './Games';
+import React from 'react';
+import { Game } from './Game.js';
+import { Store } from './Store.js';
 
 class SaveGame extends React.Component {
-  constructo(){
+  constructor(){
     super()
     this.savenewgame = this.savenewgame.bind(this);
     this.state = { game:'', title: '', score: '', publisher: '', short_description: '', platforms: [], thumb: '' };
@@ -12,7 +13,6 @@ class SaveGame extends React.Component {
   render(){
     return(
       <div>
-        <p> In this part the game will be save </p>
         <div>
           <label> Title:
             <input {...this.getTitleProps()} />
@@ -37,7 +37,7 @@ class SaveGame extends React.Component {
           </ul>
         </div>
         <div>
-          <img src = this.state.thumb > Cover </img>
+          <img src={this.state.thumb} class='image' />
         </div>
         <div>
           <label> Score:
@@ -56,6 +56,38 @@ class SaveGame extends React.Component {
     )
   }
 
+  componentDidMount() {
+    if(this.props.params.gameId) {
+      this.state.game = Store.getState();
+      let game = this.state.games.find((game) => {
+        if(this.props.params.gameId === game.id.toString()) {
+          return game.title, game.score, game.personalscore, game.publisher, game.plataform, game.thumb, movie.id ;
+        }
+      });
+      this.setState({
+        title: game.title,
+        score: game.score,
+        personalscore: game.personalscore,
+        publisher: game.publisher,
+        plataform: game.plataform,
+        thumb: game.thumb,
+        id: game.id
+        });
+    }
+    if(this.props.params.game) {
+      let game = this.props.params.game;
+        this.setState({
+        title: game.title,
+        score: game.score,
+        personalscore: game.personalscore,
+        publisher: game.publisher,
+        plataform: game.plataform,
+        thumb: game.thumb,
+        id: game.id
+        });
+    }
+}
+
   getTitleProps() {
     return {
       onChange: this.handlechangetitle,
@@ -64,7 +96,7 @@ class SaveGame extends React.Component {
   }
 
   getPublisher() {
-    retrurn {
+    return {
       onChange: this.handleChangepublisher,
       value: this.state.publisher
     };

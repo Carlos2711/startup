@@ -1,5 +1,9 @@
-import React from 'react';
+import { connect } from 'react-redux';
 import { Game } from './Game.js';
+import React from 'react';
+import { Router, Route, Link, browserHistory } from 'react-router';
+import { SaveGame } from './SaveGame.js';
+import { Store } from './Store.js';
 
 const updateProps = function (state) {
   return {
@@ -16,15 +20,9 @@ class ListGame extends React.Component {
 
   render (){
     return (
-      <p> Your favourite games! </p>
-      <ul>
-        {this.props.items.map((item, key) => (
-          <li key={key}> {item.title}
-            <Link to={`SaveGame/${item.id}`}> Update </Link>
-            <button onClick={() => { return this.deleteGame(item.id); } }> Delete </button>
-          </li>
-        ))}
-      </ul>
+      <div>
+        <list />
+      </div>
     );
   }
 
@@ -34,6 +32,21 @@ class ListGame extends React.Component {
       gameId: id,
     })
   }
+
+  list(props) {
+    if (this.props.items.lenght > 0) {
+      return(
+        <ul>
+          {this.props.items.map((item, key) => (
+            <li key={key}> {item.title} <Link to={`SaveGame/${item.id}`}> Update </Link> <button onClick={() => { return this.deleteGame(item.id); } }> Delete </button></li>
+          ))}
+        </ul>
+      )
+    } else {
+      return(
+        <p> Not data found </p>
+      )
+    }
 }
 
-export { ListGame };
+export default connect(updateProps)(ListGame);

@@ -10,10 +10,10 @@ class Home extends React.Component {
   }
 
   render () {
+    // put an image for the introduce
     return (
       <div>
         <p> Wellcome Gamer </p>
-        < Search />
       </div>
     );
   }
