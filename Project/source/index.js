@@ -16,11 +16,13 @@ class Container extends React.Component {
 
     render() {
         return (
-            <div className="container">
-                <Link to='/home'> Home </Link>
-                <Link to='/search'> Search </Link>
-                <Link to='/list'> List </Link>
 
+
+            //pasar props por router
+            <div className="header">
+                <Link to='/home'> Home </Link>
+                <Link to='/search'> Search  </Link>
+                <Link to='/list'> List </Link>
                 {this.props.children}
             </div>
         );
@@ -36,7 +38,6 @@ ReactDOM.render((
                 <Route path='list' component={ListGame} />
                 <Route path='save' component={SaveGame} />
                 <Route path='save/:gameId' component={SaveGame} />
-                <Route path='save/:game' component={SaveGame} />
             </Route>
         </Router>
     </Provider>

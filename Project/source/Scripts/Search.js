@@ -1,7 +1,10 @@
+import { connect } from 'react-redux';
 import { Game } from './Game.js';
-import { Router, Route, Link, browserHistory } from 'react-router';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Router, Route, Link, browserHistory } from 'react-router';
+import { SaveGame } from './SaveGame.js';
+import { Store } from './Store.js';
 
 class Search extends React.Component{
 
@@ -12,7 +15,6 @@ class Search extends React.Component{
     this.state = { search: '', games: [], chosengame: '' };
   }
 
-// agregar un mapeo para mostrar los resultados de la busqueda
   render() {
     //add a message when return a string of null, think is usefull implement an IF or other methods
     return(
@@ -23,7 +25,7 @@ class Search extends React.Component{
         <button onClick={()=>{ return this.searchGames(this.state.search); } }> Search </button>
         <ul>
           {this.state.games.map((game, key) => (
-            <li key={key}> {game.title} <Link to={`newgame/${game}`}> Add Game </Link>  </li>
+            <li key={key}> {game.title} <Link to={`SaveGame`}> Add Game </Link>  </li>
             ))}
         </ul>
       </div>
@@ -36,6 +38,7 @@ class Search extends React.Component{
 
   searchGames(search) {
     //clear this block after the site work nice
+    //now using store for the newgame, adapt the code
 
     let URL = 'https://videogamesrating.p.mashape.com/get.php?game='+search;
     let searchedgames;
@@ -61,4 +64,4 @@ class Search extends React.Component{
 
 }
 
-export {Search}
+export default connect(Search)

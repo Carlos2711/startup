@@ -1,4 +1,5 @@
 import { createStore } from 'redux';
+import { combineReducers } from 'redux';
 import { Game } from './Game.js';
 
 let GamesReducer = function ( games =  JSON.parse(localStorage.getItem('Game'))|| [], action ) {
@@ -36,6 +37,22 @@ let GamesReducer = function ( games =  JSON.parse(localStorage.getItem('Game'))|
   }
 }
 
-let Store = createStore(GamesReducer);
+//do other reducer for the comming game from the API
+
+let apireducer = function ( newgame: game || '' , action) {
+  switch (action.type) {
+
+    case 'ADD_NEW':
+      const ngame = game;
+      return ngame;
+
+    default:
+      return newgame;
+  }
+}
+
+let allreducer = combineReducers({ GamesReducer, apireducer });
+
+let Store = createStore(allreducer);
 
 export { Store }

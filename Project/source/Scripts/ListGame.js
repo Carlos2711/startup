@@ -7,11 +7,9 @@ import { Store } from './Store.js';
 
 const updateProps = function (state) {
   return {
-    items: state
+    items: state.games
   };
 }
-
-//pasar por props la lista de games
 
 class ListGame extends React.Component {
   constructor (props) {
@@ -19,9 +17,24 @@ class ListGame extends React.Component {
   }
 
   render (){
-    return (
+
+    let print;
+
+    if (this.props.items.lenght > 0) {
+      print = <ul>
+          {this.props.items.map((item, key) => (
+            <li key={key}> {item.title} <button onClick={browserHistory.push(`SaveGame/${item.id}`)}> Update </button>
+              <button onClick={() => { return this.deleteGame(item.id); } }> Delete </button></li>
+          ))}
+        </ul>
+    } else {
+      print = <p> Not data found </p>
+    }
+
+
+    return(
       <div>
-        <list />
+        {print}
       </div>
     );
   }
@@ -32,21 +45,7 @@ class ListGame extends React.Component {
       gameId: id,
     })
   }
-
-  list(props) {
-    if (this.props.items.lenght > 0) {
-      return(
-        <ul>
-          {this.props.items.map((item, key) => (
-            <li key={key}> {item.title} <Link to={`SaveGame/${item.id}`}> Update </Link> <button onClick={() => { return this.deleteGame(item.id); } }> Delete </button></li>
-          ))}
-        </ul>
-      )
-    } else {
-      return(
-        <p> Not data found </p>
-      )
-    }
 }
 
+// export {ListGame}
 export default connect(updateProps)(ListGame);
