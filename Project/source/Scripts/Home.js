@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Search} from './Search.js';
+import ContainerSearch from './Containers/ContainerSearch.js';
 
 class Home extends React.Component {
   constructor (props) {
@@ -23,4 +23,4 @@ class Home extends React.Component {
   }
 }
 
-export { Home }
+export default Home

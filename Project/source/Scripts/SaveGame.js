@@ -1,7 +1,7 @@
 // create the tab for the data of the game and the user can put a score, validate the user can't change the others values
 import React from 'react';
-import { Game } from './Game.js';
-import { Store } from './Store.js';
+import Game from './Game.js';
+import Store from './Store.js';
 
 class SaveGame extends React.Component {
   constructor(){
@@ -185,4 +185,4 @@ class SaveGame extends React.Component {
   }
 }
 
-export { SaveGame }
+export default SaveGame

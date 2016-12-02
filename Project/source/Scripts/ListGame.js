@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
-import { Game } from './Game.js';
+import Game from './Game.js';
 import React from 'react';
 import { Router, Route, Link, browserHistory } from 'react-router';
-import { SaveGame } from './SaveGame.js';
-import { Store } from './Store.js';
+import SaveGame from './SaveGame.js';
+import Store from './Store.js';
 
 const updateProps = function (state) {
   return {
