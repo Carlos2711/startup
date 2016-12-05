@@ -74,8 +74,9 @@ class SaveGame extends React.Component {
         id: game.id
         });
     }
-    if(this.props.params.game) {
-      let game = this.props.params.game;
+    else {
+      //recover from localstorage and assign to state
+      let game = JSON.parse(localStorage.getItem('APIselectedgame'));
         this.setState({
         title: game.title,
         score: game.score,

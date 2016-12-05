@@ -1,7 +1,12 @@
+import { connect } from 'react-redux';
+import { Game } from './Game.js';
 import React from 'react';
-import { Link, browserHistory } from 'react-router';
+import ReactDOM from 'react-dom';
+import { Router, Route, Link, browserHistory } from 'react-router';
+import { SaveGame } from './SaveGame.js';
+import { Store } from './Store.js';
 
-class ViewSearch extends React.Component{
+class Search extends React.Component{
   constructor(props){
     super(props)
     this.searchGames = this.searchGames.bind(this);
@@ -65,4 +70,4 @@ class ViewSearch extends React.Component{
   }
 }
 
-export default ViewSearch;
+export default Search;

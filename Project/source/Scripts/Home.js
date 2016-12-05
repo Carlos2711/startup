@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ContainerSearch from './Containers/ContainerSearch.js';
 
 class Home extends React.Component {
   constructor (props) {
