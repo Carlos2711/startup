@@ -57,7 +57,7 @@ class Search extends React.Component{
         <ul>
           {this.state.games.map((game, key) => (
             <li key={key}>
-              {game.title} <button onClick={()=>{this.lclstoregame(game);} }> Save </button>
+              {game.title} <button onClick={()=>{this.lclstoregame(game);}, ()=>{browserHistory.push('/save');} }> Save </button>
             </li>
           ))}
         </ul>

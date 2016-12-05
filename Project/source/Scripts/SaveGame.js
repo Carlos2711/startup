@@ -31,7 +31,7 @@ class SaveGame extends React.Component {
         <div>
           <label> Platforms: </label>
           <ul>
-            {this.props.Platforms.map((item, key) => (
+            {this.state.platforms.map((item, key) => (
               <li key={key}> {item}  </li>
               ))}
           </ul>
@@ -69,7 +69,7 @@ class SaveGame extends React.Component {
         score: game.score,
         personalscore: game.personalscore,
         publisher: game.publisher,
-        plataform: game.plataform,
+        platforms: game.platforms,
         thumb: game.thumb,
         id: game.id
         });
@@ -77,12 +77,13 @@ class SaveGame extends React.Component {
     else {
       //recover from localstorage and assign to state
       let game = JSON.parse(localStorage.getItem('APIselectedgame'));
+      console.log(game);
         this.setState({
         title: game.title,
         score: game.score,
         personalscore: game.personalscore,
         publisher: game.publisher,
-        plataform: game.plataform,
+        platforms: game.platforms,
         thumb: game.thumb,
         id: game.id
         });
