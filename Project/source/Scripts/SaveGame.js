@@ -79,13 +79,13 @@ class SaveGame extends React.Component {
       let game = JSON.parse(localStorage.getItem('APIselectedgame'));
       console.log(game);
         this.setState({
-        title: game.title,
-        score: game.score,
-        personalscore: game.personalscore,
-        publisher: game.publisher,
-        platforms: game.platforms,
-        thumb: game.thumb,
-        id: game.id
+          title: game.title,
+          score: game.score,
+          personalscore: game.personalscore,
+          publisher: game.publisher,
+          platforms: game.platforms,
+          thumb: game.thumb,
+          id: game.id
         });
     }
 }
