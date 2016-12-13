@@ -37,20 +37,6 @@ let GamesReducer = function ( games =  JSON.parse(localStorage.getItem('Game'))|
   }
 }
 
-// let apireducer = function ( newgame = '', action) {
-//   switch (action.type) {
-//
-//     case 'ADD_NEW':
-//       const ngame = game;
-//       return ngame;
-//
-//     default:
-//       return newgame;
-//   }
-// }
-
-//let allreducer = combineReducers({ GamesReducer, apireducer });
-
 let Store = createStore(GamesReducer);
 
 export default Store

@@ -29,11 +29,8 @@ class Search extends React.Component{
 
     var xhr = new XMLHttpRequest();
     xhr.onload = function() {
-      console.log(JSON.parse(xhr.responseText));
       searchedgames = JSON.parse(xhr.responseText);
-      console.log(searchedgames[0].title);
       this.setState({games: searchedgames});
-      console.log(this.state.games);
       if(searchedgames === []){
 
       }

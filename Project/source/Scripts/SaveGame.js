@@ -1,4 +1,3 @@
-// create the tab for the data of the game and the user can put a score, validate the user can't change the others values
 import React from 'react';
 import Game from './Game.js';
 import Store from './Store.js';
@@ -7,7 +6,13 @@ class SaveGame extends React.Component {
   constructor(){
     super()
     this.savenewgame = this.savenewgame.bind(this);
-    this.state = { game:'', title: '', score: '', publisher: '', short_description: '', platforms: [], thumb: '' };
+    this.handleChangetitle = this.handleChangetitle.bind(this);
+    this.handleChangescore = this.handleChangescore.bind(this);
+    this.handleChangepersonalscore = this.handleChangepersonalscore.bind(this);
+    this.handleChangepublisher = this.handleChangepublisher.bind(this);
+    this.handleChangeshortdescription = this.handleChangeshortdescription.bind(this);
+    this.handleChangethumbs = this.handleChangethumbs.bind(this);
+    this.state = { games: '', title: '', score: '', personalscore:'', publisher: '', short_description: '', thumb: '', id:'' };
   }
 
   render(){
@@ -29,15 +34,7 @@ class SaveGame extends React.Component {
           </label>
         </div>
         <div>
-          <label> Platforms: </label>
-          <ul>
-            {this.state.platforms.map((item, key) => (
-              <li key={key}> {item}  </li>
-              ))}
-          </ul>
-        </div>
-        <div>
-          <img src={this.state.thumb} class='image' />
+          <img src={this.state.thumb} className='image' />
         </div>
         <div>
           <label> Score:
@@ -45,7 +42,7 @@ class SaveGame extends React.Component {
           </label>
         </div>
         <div>
-          <label>
+          <label> Personal Score:
             <input {...this.getPersonalScore()} />
           </label>
         </div>
@@ -58,10 +55,10 @@ class SaveGame extends React.Component {
 
   componentDidMount() {
     if(this.props.params.gameId) {
-      this.state.game = Store.getState();
+      this.state.games = Store.getState();
       let game = this.state.games.find((game) => {
         if(this.props.params.gameId === game.id.toString()) {
-          return game.title, game.score, game.personalscore, game.publisher, game.plataform, game.thumb, movie.id ;
+          return game.title, game.score, game.personalscore, game.publisher,game.thumb, game.id, game.short_description;
         }
       });
       this.setState({
@@ -69,30 +66,28 @@ class SaveGame extends React.Component {
         score: game.score,
         personalscore: game.personalscore,
         publisher: game.publisher,
-        platforms: game.platforms,
         thumb: game.thumb,
+        short_description: game.short_description,
         id: game.id
         });
     }
     else {
       //recover from localstorage and assign to state
       let game = JSON.parse(localStorage.getItem('APIselectedgame'));
-      console.log(game);
-        this.setState({
-          title: game.title,
-          score: game.score,
-          personalscore: game.personalscore,
-          publisher: game.publisher,
-          platforms: game.platforms,
-          thumb: game.thumb,
-          id: game.id
-        });
+      //console.log(game);
+      this.setState({
+        title: game.title,
+        score: game.score,
+        publisher: game.publisher,
+        thumb: game.thumb,
+        short_description: game.short_description
+      });
     }
 }
 
   getTitleProps() {
     return {
-      onChange: this.handlechangetitle,
+      onChange: this.handleChangetitle,
       value: this.state.title
     };
   }
@@ -125,6 +120,8 @@ class SaveGame extends React.Component {
     };
   }
 
+
+
   handleChangetitle(e) {
     this.setState({title: e.target.value});
   }
@@ -145,18 +142,16 @@ class SaveGame extends React.Component {
     this.setState({short_description: e.target.value});
   }
 
-  handleChangePlatform(e) {
-    this.setState({platform: e.target.value});
-  }
-
-  handleChnagethumbs(e) {
+  handleChangethumbs(e) {
     this.setState({thumb: e.target.value});
   }
 
 
   savenewgame(e) {
     e.preventDefault();  //take a look of this preventDefault
+    //console.log('we are in savegame');
     if(this.state.id === ''){
+      //console.log('we are in the if');
       Store.dispatch({
         type: 'ADD_GAME',
         game: {
@@ -164,21 +159,22 @@ class SaveGame extends React.Component {
           score: this.state.score,
           personalscore: this.state.personalscore,
           publisher: this.state.publisher,
-          plataform: this.state.plataform,
+          short_description: this.state.short_description,
           thumb: this.state.thumb,
           id: Date.now(),
         }
       });
     }
     else {
+      //console.log('if this message show i fucked up');
       Store.dispatch({
         type: 'UPDATE_GAME',
         game: {
           title: this.state.title,
           score: this.state.score,
           personalscore: this.state.personalscore,
-          publisher: publisher,
-          plataform: this.state.plataform,
+          publisher: this.state.publisher,
+          short_description: this.state.short_description,
           thumb: this.state.thumb,
           id: this.state.id,
         }

@@ -15,7 +15,6 @@ class Container extends React.Component {
 
     render() {
         return (
-            //pasar props por router
             <div className="header">
                 <Link to='/home'> Home </Link>
                 <Link to='/search'> Search  </Link>
