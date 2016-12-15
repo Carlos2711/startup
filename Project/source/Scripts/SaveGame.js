@@ -1,6 +1,7 @@
 import React from 'react';
 import Game from './Game.js';
 import Store from './Store.js';
+import { Router, Route, Link, browserHistory } from 'react-router';
 
 class SaveGame extends React.Component {
   constructor(){
@@ -72,9 +73,7 @@ class SaveGame extends React.Component {
         });
     }
     else {
-      //recover from localstorage and assign to state
       let game = JSON.parse(localStorage.getItem('APIselectedgame'));
-      //console.log(game);
       this.setState({
         title: game.title,
         score: game.score,
@@ -148,10 +147,8 @@ class SaveGame extends React.Component {
 
 
   savenewgame(e) {
-    e.preventDefault();  //take a look of this preventDefault
-    //console.log('we are in savegame');
+    e.preventDefault();
     if(this.state.id === ''){
-      //console.log('we are in the if');
       Store.dispatch({
         type: 'ADD_GAME',
         game: {
@@ -164,9 +161,9 @@ class SaveGame extends React.Component {
           id: Date.now(),
         }
       });
+      browserHistory.push('/search');
     }
     else {
-      //console.log('if this message show i fucked up');
       Store.dispatch({
         type: 'UPDATE_GAME',
         game: {
@@ -179,6 +176,7 @@ class SaveGame extends React.Component {
           id: this.state.id,
         }
       })
+      browserHistory.push('/list');
     }
   }
 }
