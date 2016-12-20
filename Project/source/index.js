@@ -28,19 +28,16 @@ class Container extends React.Component {
         return (
             <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
                 <div className="header" style={{backgroundColor: '#000000'}}>
-                    <Toolbar style={{backgroundColor: '#1a1a1a'}}>
-                        <ToolbarGroup>
+                    <Toolbar style={{backgroundColor: '#424242'}}>
+                        <ToolbarGroup style={{backgroundColor: '#424242'}}>
                             <img className="imagehongo" src="http://vignette1.wikia.nocookie.net/nintendo/images/9/9c/Artwork_-_SUPER_MUSHROOM_(Simple).svg/revision/latest?cb=20160716213644&path-prefix=en"/>
                         </ToolbarGroup>
-                        <ToolbarGroup>
-                            <FlatButton label="Home" style={{color: '#39e600'}}/>
-                            <FlatButton label="Search" primary={true} style={{color: '#39e600'}}/>
-                            <FlatButton label="List" secondary={true} style={{color: '#39e600'}}/>
+                        <ToolbarGroup style={{backgroundColor: '#424242'}}>
+                            <FlatButton label="Home" onClick={() => {browserHistory.push(`home`)}} style={{color: '#39e600'}}/>
+                            <FlatButton label="Search" primary={true} onClick={() => {browserHistory.push(`search`)}} style={{color: '#39e600'}}/>
+                            <FlatButton label="List" secondary={true} onClick={() => {browserHistory.push(`list`)}} style={{color: '#39e600'}}/>
                         </ToolbarGroup>
                     </Toolbar>
-                    <Link to='/home'> Home </Link>
-                    <Link to='/search'> Search  </Link>
-                    <Link to='/list'> List </Link>
                     {this.props.children}
                 </div>
             </MuiThemeProvider>

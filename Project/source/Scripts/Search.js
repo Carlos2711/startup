@@ -21,9 +21,6 @@ class Search extends React.Component{
 
 
   searchGames(search) {
-    //clear this block after the site work nice
-    //now using store for the newgame, adapt the code
-
     let URL = 'https://videogamesrating.p.mashape.com/get.php?game='+search;
     let searchedgames;
 
@@ -43,18 +40,17 @@ class Search extends React.Component{
     xhr.send();
   }
 
-  //add a message when return a string of null, think is usefull implement an IF or other methods
   render() {
     return(
-      <div>
-        <label>
-          <input onChange={this.handleChangesearch} value={this.state.search}/>
+      <div className="search">
+        <label >
+          <input className="input" onChange={this.handleChangesearch} value={this.state.search}/>
         </label>
-        <button onClick={()=>{ return this.searchGames(this.state.search); } }> Search </button>
-        <ul>
+        <button className="buttonsearch" onClick={()=>{ return this.searchGames(this.state.search); } }> Search </button>
+        <ul className="listsearch">
           {this.state.games.map((game, key) => (
             <li key={key}>
-              {game.title} <button onClick={()=>{this.lclstoregame(game); browserHistory.push('/save');} }> Save </button>
+              {game.title} <button className="button" onClick={()=>{this.lclstoregame(game); browserHistory.push('/save');} }> Save </button>
             </li>
           ))}
         </ul>

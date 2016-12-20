@@ -21,10 +21,10 @@ class ListGame extends React.Component {
 
     let print;
     if (this.props.items.length > 0) {
-      print = <ul>
+      print = <ul className="list">
           {this.props.items.map((item, key) => (
-            <li key={key}> {item.title} <button onClick={() => {browserHistory.push(`save/${item.id}`)}}> Update </button>
-              <button onClick={() => { return this.deleteGame(item.id); } }> Delete </button></li>
+            <li key={key}> {item.title} <button className="button" onClick={() => {browserHistory.push(`save/${item.id}`)}}> Update </button>
+              <button className="button" onClick={() => { return this.deleteGame(item.id); } }> Delete </button></li>
           ))}
         </ul>
     } else {
@@ -33,7 +33,7 @@ class ListGame extends React.Component {
 
 
     return(
-      <div>
+      <div className="divlist">
         {print}
       </div>
     );
