@@ -54,6 +54,7 @@ class Search extends React.Component{
             </li>
           ))}
         </ul>
+        <img className="bonfire" src="http://i.imgur.com/wj8HNGQ.gif"/>
       </div>
     )
   }

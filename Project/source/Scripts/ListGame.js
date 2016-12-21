@@ -28,12 +28,15 @@ class ListGame extends React.Component {
           ))}
         </ul>
     } else {
-      print = <p> Not data found </p>
+      print = <div className="NotFound">
+                <p> Not data found </p>
+                <img className="animatedkirby" src="http://38.media.tumblr.com/08cacac45ba7f40bd5df2d19cef6c317/tumblr_n4exze5tPB1t95sf8o1_500.gif" />
+              </div>
     }
 
 
     return(
-      <div className="divlist">
+      <div>
         {print}
       </div>
     );

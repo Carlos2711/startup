@@ -18,37 +18,39 @@ class SaveGame extends React.Component {
 
   render(){
     return(
-      <div>
-        <div>
-          <label> Title:
-            <input {...this.getTitleProps()} />
-          </label>
+      <div className="savegame">
+        <div className="data">
+          <div>
+            <label> Title:
+              <input className="input" {...this.getTitleProps()} readOnly="readOnly" />
+            </label>
+          </div>
+          <div>
+            <label> Publisher:
+              <input className="input" {...this.getPublisher()}  readOnly="readOnly" />
+            </label>
+          </div>
+          <div>
+            <label> Description:
+             <textarea className="input2" {...this.getShortdescription()} readOnly="readOnly"/>
+            </label>
+          </div>
+             <div>
+            <label> Score:
+              <input className="input" {...this.getScore()} readOnly="readOnly"/>
+            </label>
+          </div>
+          <div>
+            <label> Personal Score:
+              <input className="input" {...this.getPersonalScore()} />
+            </label>
+          </div>
         </div>
-        <div>
-          <label> Publisher:
-            <input {...this.getPublisher()} />
-          </label>
-        </div>
-        <div>
-          <label> Description:
-            <input {...this.getShortdescription()} />
-          </label>
-        </div>
-        <div>
+        <div className="cover">
           <img src={this.state.thumb} className='image' />
         </div>
-        <div>
-          <label> Score:
-            <input {...this.getScore()} />
-          </label>
-        </div>
-        <div>
-          <label> Personal Score:
-            <input {...this.getPersonalScore()} />
-          </label>
-        </div>
-        <div>
-          <button onClick={this.savenewgame} > Save </button>
+        <div className="savebutton">
+          <button className="button" onClick={this.savenewgame} > Save </button>
         </div>
       </div>
     )

@@ -39,7 +39,7 @@ class Container extends React.Component {
                         </ToolbarGroup>
                     </Toolbar>
                     {this.props.children}
-                </div>
+                    </div>
             </MuiThemeProvider>
 
         );
